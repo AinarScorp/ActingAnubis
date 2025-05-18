@@ -19,18 +19,11 @@ struct FListenToInputComponentsInfo
 	//MUST BE inheriting from ListenToInputTagInterface
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Acting Anubis|Pawn Data")
 	TSubclassOf<UActorComponent> ListenToTagComponent;
+	//DEPRECATED: Use InputTags Instead
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Acting Anubis|PawnData", meta = (Categories = "Input", DeprecatedProperty, DeprecatedMessage = "Use Input Tags Instead"))
 	FGameplayTag InputTag;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Acting Anubis|PawnData", meta = (Categories = "Input"))
 	FGameplayTagContainer InputTags;
-};
-
-USTRUCT()
-struct FMyStruct
-{
-	GENERATED_BODY()
-	UPROPERTY()
-	TArray<TObjectPtr<UActorComponent>> ArrayOfComps;
 };
 
 UCLASS()
