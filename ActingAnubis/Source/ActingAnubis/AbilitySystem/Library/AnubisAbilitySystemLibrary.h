@@ -22,7 +22,10 @@ public:
 	static void InitializeAbilitySystem(UAnubisAbilitySystemComponent* AbilitySystemComp, const UPawnData* PawnData, AActor* OwnerActor, AActor* AvatarActor);
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem", DisplayName = "Initialize Ability System With Ability Sets", meta = (Keywords = "Init"))
 	static void InitializeAbilitySystemWithAbilitySets(UAnubisAbilitySystemComponent* AbilitySystemComp, const TArray<UAbilitySet*> AbilitySets, AActor* OwnerActor, AActor* AvatarActor);
-
+	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem|Tags", meta = (Keywords = "Status", Categories = "Status"))
+	static bool AddStatusTags(AActor* Actor, FGameplayTagContainer GameplayTags);
+	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem|Tags", meta = (Keywords = "Status", Categories = "Status"))
+	static bool RemoveStatusTags(AActor* Actor, FGameplayTagContainer GameplayTags);
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem|Tags")
 	static bool GetOwnedGameplayTags(const AActor* Actor, FGameplayTagContainer& TagContainer);
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem|Tags")

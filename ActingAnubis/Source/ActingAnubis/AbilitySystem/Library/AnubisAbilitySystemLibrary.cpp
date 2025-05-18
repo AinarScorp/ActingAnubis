@@ -2,6 +2,7 @@
 
 #include "AnubisAbilitySystemLibrary.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
 #include "ActingAnubis/AbilitySystem/AnubisAbilitySystemComponent.h"
 #include "ActingAnubis/AbilitySystem/Data/AbilitySet.h"
 #include "ActingAnubis/Data/PawnData.h"
@@ -25,6 +26,26 @@ void UAnubisAbilitySystemLibrary::InitializeAbilitySystemWithAbilitySets(UAnubis
 		AbilitySet->GiveToAbilitySystem(AbilitySystemComp, nullptr, OwnerActor);
 	}
 	AbilitySystemComp->InitAbilityActorInfo(OwnerActor, AvatarActor);
+}
+
+bool UAnubisAbilitySystemLibrary::AddStatusTags(AActor* Actor, FGameplayTagContainer GameplayTags)
+{
+	if (UAbilitySystemComponent* AbilitySysComp = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Actor))
+	{
+		AbilitySysComp->AddLooseGameplayTags(GameplayTags);
+		return true;
+	}
+	return false;
+}
+
+bool UAnubisAbilitySystemLibrary::RemoveStatusTags(AActor* Actor, FGameplayTagContainer GameplayTags)
+{
+	if (UAbilitySystemComponent* AbilitySysComp = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Actor))
+	{
+		AbilitySysComp->RemoveLooseGameplayTags(GameplayTags);
+		return true;
+	}
+	return false;
 }
 
 bool UAnubisAbilitySystemLibrary::GetOwnedGameplayTags(const AActor* Actor, FGameplayTagContainer& TagContainer)
