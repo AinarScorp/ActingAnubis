@@ -19,8 +19,10 @@ struct FListenToInputComponentsInfo
 	//MUST BE inheriting from ListenToInputTagInterface
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Acting Anubis|Pawn Data")
 	TSubclassOf<UActorComponent> ListenToTagComponent;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Acting Anubis|PawnData", meta = (Categories = "Input"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Acting Anubis|PawnData", meta = (Categories = "Input", DeprecatedProperty, DeprecatedMessage = "Use Input Tags Instead"))
 	FGameplayTag InputTag;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Acting Anubis|PawnData", meta = (Categories = "Input"))
+	FGameplayTagContainer InputTags;
 };
 
 USTRUCT()
@@ -37,7 +39,8 @@ class ACTINGANUBIS_API UListenToTagInputSet : public UDataAsset
 	GENERATED_BODY()
 	friend UPawnData;
 public:
-	void CreatedComponent(const FGameplayTag& Tag, UActorComponent* ActorComponent);
+	//TodoEinar Remove Tag use only Tags
+	void CreatedComponent(const FGameplayTag& Tag, const FGameplayTagContainer& Tags, UActorComponent* ActorComponent);
 private:
 	void InputProcess(const FGameplayTag& Tag, bool InputTriggered);
 public:
