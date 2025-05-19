@@ -4,6 +4,13 @@
 
 #include "Abilities/AnubisGameplayAbility.h"
 
+UAnubisAbilitySystemComponent::UAnubisAbilitySystemComponent()
+{
+	ReplicationMode = EGameplayEffectReplicationMode::Minimal;
+	PrimaryComponentTick.bStartWithTickEnabled = true;
+
+}
+
 void UAnubisAbilitySystemComponent::AbilityInputTagTriggered(const FGameplayTag& InputTag)
 {
 	if (!InputTag.IsValid())

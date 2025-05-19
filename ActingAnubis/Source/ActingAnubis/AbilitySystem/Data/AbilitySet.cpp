@@ -3,8 +3,8 @@
 #include "AbilitySet.h"
 
 #include "ActingAnubis/AbilitySystem/Abilities/AnubisGameplayAbility.h"
-#include "ActingAnubis/AbilitySystem/AnubisAbilitySystemComponent.h"
 #include "ActiveGameplayEffectHandle.h"
+#include "AbilitySystemComponent.h"
 #include "GameplayAbilitySpecHandle.h"
 
 void FAbilitySet_GrantedHandles::AddAbilitySpecHandle(const FGameplayAbilitySpecHandle& Handle)
@@ -34,7 +34,7 @@ void FAbilitySet_GrantedHandles::AddGameplayTags(const FGameplayTagContainer& Ta
 	GrantedGameplayTags.AppendTags(TagContainer);
 }
 
-void FAbilitySet_GrantedHandles::TakeFromAbilitySystem(UAnubisAbilitySystemComponent* AbilitySystemComponent)
+void FAbilitySet_GrantedHandles::TakeFromAbilitySystem(UAbilitySystemComponent* AbilitySystemComponent)
 {
 	check(AbilitySystemComponent);
 
@@ -61,7 +61,7 @@ void FAbilitySet_GrantedHandles::TakeFromAbilitySystem(UAnubisAbilitySystemCompo
 	GrantedGameplayTags.Reset();
 }
 
-void UAbilitySet::GiveToAbilitySystem(UAnubisAbilitySystemComponent* AbilitySystemComponent, FAbilitySet_GrantedHandles* OutGrantedHandles, UObject* SourceObject, AActor* NewOwner)
+void UAbilitySet::GiveToAbilitySystem(UAbilitySystemComponent* AbilitySystemComponent, FAbilitySet_GrantedHandles* OutGrantedHandles, UObject* SourceObject, AActor* NewOwner)
 {
 	check(AbilitySystemComponent);
 
@@ -142,7 +142,7 @@ void UAbilitySet::GiveToAbilitySystem(UAnubisAbilitySystemComponent* AbilitySyst
 
 }
 
-void UAbilitySet::RemoveFromAbilitySystem(UAnubisAbilitySystemComponent* AbilitySystemComponent)
+void UAbilitySet::RemoveFromAbilitySystem(UAbilitySystemComponent* AbilitySystemComponent)
 {
 	GrantedHandles.TakeFromAbilitySystem(AbilitySystemComponent);
 }

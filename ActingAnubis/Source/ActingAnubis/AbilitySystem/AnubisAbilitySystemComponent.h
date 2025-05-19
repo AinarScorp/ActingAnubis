@@ -12,6 +12,7 @@ class ACTINGANUBIS_API UAnubisAbilitySystemComponent : public UAbilitySystemComp
 	GENERATED_BODY()
 
 public:
+	UAnubisAbilitySystemComponent();
 	//virtual void InitAbilityActorInfo(AActor* InOwnerActor, AActor* InAvatarActor) override;
 	void AbilityInputTagTriggered(const FGameplayTag& InputTag);
 	void AbilityInputTagReleased(const FGameplayTag& InputTag);

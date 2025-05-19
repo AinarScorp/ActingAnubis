@@ -24,6 +24,12 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Acting Anubis|Ability", DisplayName = "OnRemoveAbility")
 	void BP_OnRemoveAbility(UPARAM(ref) const FGameplayAbilityActorInfo& ActorInfo);
 
+
+	UFUNCTION(BlueprintCallable, Category = Ability)
+	APlayerController* GetPlayerControllerFromActorInfo() const;
+	UFUNCTION(BlueprintCallable, Category = Ability)
+	UMovementComponent* GetMovementComponentFromActorInfo() const;
+
 	virtual void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 	virtual void OnRemoveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 	virtual void InputPressed(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) override{}

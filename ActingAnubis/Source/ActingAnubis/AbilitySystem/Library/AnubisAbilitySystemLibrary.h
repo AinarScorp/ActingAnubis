@@ -7,9 +7,9 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "AnubisAbilitySystemLibrary.generated.h"
 
-class UPawnData;
 class UAbilitySet;
-class UAnubisAbilitySystemComponent;
+class UAbilitySystemComponent;
+class UPawnData;
 /**
  *
  */
@@ -19,9 +19,9 @@ class ACTINGANUBIS_API UAnubisAbilitySystemLibrary : public UBlueprintFunctionLi
 	GENERATED_BODY()
 public:
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem")
-	static void InitializeAbilitySystem(UAnubisAbilitySystemComponent* AbilitySystemComp, const UPawnData* PawnData, AActor* OwnerActor, AActor* AvatarActor);
+	static void InitializeAbilitySystem(UAbilitySystemComponent* AbilitySystemComp, const UPawnData* PawnData, AActor* OwnerActor, AActor* AvatarActor);
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem", DisplayName = "Initialize Ability System With Ability Sets", meta = (Keywords = "Init"))
-	static void InitializeAbilitySystemWithAbilitySets(UAnubisAbilitySystemComponent* AbilitySystemComp, const TArray<UAbilitySet*> AbilitySets, AActor* OwnerActor, AActor* AvatarActor);
+	static void InitializeAbilitySystemWithAbilitySets(UAbilitySystemComponent* AbilitySystemComp, const TArray<UAbilitySet*> AbilitySets, AActor* OwnerActor, AActor* AvatarActor);
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem|Tags", meta = (Keywords = "Status", Categories = "Status"))
 	static bool AddStatusTags(AActor* Actor, FGameplayTagContainer GameplayTags);
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem|Tags", meta = (Keywords = "Status", Categories = "Status"))

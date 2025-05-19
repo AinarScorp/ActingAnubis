@@ -8,6 +8,24 @@ UAnubisGameplayAbility::UAnubisGameplayAbility()
 	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
 }
 
+APlayerController* UAnubisGameplayAbility::GetPlayerControllerFromActorInfo() const
+{
+	if (!ensure(CurrentActorInfo))
+	{
+		return nullptr;
+	}
+	return CurrentActorInfo->PlayerController.Get();
+}
+
+UMovementComponent* UAnubisGameplayAbility::GetMovementComponentFromActorInfo() const
+{
+	if (!ensure(CurrentActorInfo))
+	{
+		return nullptr;
+	}
+	return CurrentActorInfo->MovementComponent.Get();
+}
+
 void UAnubisGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)
 {
 	Super::OnGiveAbility(ActorInfo, Spec);

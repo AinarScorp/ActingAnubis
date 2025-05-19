@@ -7,7 +7,7 @@
 #include "GameplayTagContainer.h"
 #include "AbilitySet.generated.h"
 
-class UAnubisAbilitySystemComponent;
+class UAbilitySystemComponent;
 class UAnubisGameplayAbility;
 class UAttributeSet;
 struct FActiveGameplayEffectHandle;
@@ -73,7 +73,7 @@ public:
 	void AddGameplayEffectHandle(const FActiveGameplayEffectHandle& Handle);
 	void AddAttributeSet(UAttributeSet* Set);
 	void AddGameplayTags(const FGameplayTagContainer& TagContainer);
-	void TakeFromAbilitySystem(UAnubisAbilitySystemComponent* AbilitySystemComponent);
+	void TakeFromAbilitySystem(UAbilitySystemComponent* AbilitySystemComponent);
 
 protected:
 	// Handles to the granted abilities.
@@ -100,8 +100,8 @@ class ACTINGANUBIS_API UAbilitySet final : public UDataAsset
 {
 	GENERATED_BODY()
 public:
-	void GiveToAbilitySystem(UAnubisAbilitySystemComponent* AbilitySystemComponent, FAbilitySet_GrantedHandles* OutGrantedHandles, UObject* SourceObject = nullptr, AActor* NewOwner = nullptr);
-	void RemoveFromAbilitySystem(UAnubisAbilitySystemComponent* AbilitySystemComponent);
+	void GiveToAbilitySystem(UAbilitySystemComponent* AbilitySystemComponent, FAbilitySet_GrantedHandles* OutGrantedHandles, UObject* SourceObject = nullptr, AActor* NewOwner = nullptr);
+	void RemoveFromAbilitySystem(UAbilitySystemComponent* AbilitySystemComponent);
 
 private:
 	// Attribute sets to grant when this ability set is granted.

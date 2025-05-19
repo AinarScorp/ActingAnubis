@@ -7,7 +7,7 @@
 #include "ActingAnubis/AbilitySystem/Data/AbilitySet.h"
 #include "ActingAnubis/Data/PawnData.h"
 
-void UAnubisAbilitySystemLibrary::InitializeAbilitySystem(UAnubisAbilitySystemComponent* AbilitySystemComp, const UPawnData* PawnData, AActor* OwnerActor, AActor* AvatarActor)
+void UAnubisAbilitySystemLibrary::InitializeAbilitySystem(UAbilitySystemComponent* AbilitySystemComp, const UPawnData* PawnData, AActor* OwnerActor, AActor* AvatarActor)
 {
 	if (PawnData)
 	{
@@ -15,7 +15,7 @@ void UAnubisAbilitySystemLibrary::InitializeAbilitySystem(UAnubisAbilitySystemCo
 	}
 }
 
-void UAnubisAbilitySystemLibrary::InitializeAbilitySystemWithAbilitySets(UAnubisAbilitySystemComponent* AbilitySystemComp, const TArray<UAbilitySet*> AbilitySets, AActor* OwnerActor, AActor* AvatarActor)
+void UAnubisAbilitySystemLibrary::InitializeAbilitySystemWithAbilitySets(UAbilitySystemComponent* AbilitySystemComp, const TArray<UAbilitySet*> AbilitySets, AActor* OwnerActor, AActor* AvatarActor)
 {
 	if (!AbilitySystemComp)
 	{
