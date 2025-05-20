@@ -78,7 +78,7 @@ bool UAnubisAbilitySystemLibrary::HasMatchingGameplayTag(const AActor* Actor, FG
 	return false;
 }
 
-bool UAnubisAbilitySystemLibrary::HasAllMatchingGameplayTags(const AActor* Actor, const FGameplayTagContainer& TagContainer)
+bool UAnubisAbilitySystemLibrary::HasAllMatchingGameplayTags(const AActor* Actor, FGameplayTagContainer TagContainer)
 {
 	if (Actor == nullptr)
 	{
@@ -93,7 +93,7 @@ bool UAnubisAbilitySystemLibrary::HasAllMatchingGameplayTags(const AActor* Actor
 	return false;
 }
 
-bool UAnubisAbilitySystemLibrary::HasAnyMatchingGameplayTags(const AActor* Actor, const FGameplayTagContainer& TagContainer)
+bool UAnubisAbilitySystemLibrary::HasAnyMatchingGameplayTags(const AActor* Actor, FGameplayTagContainer TagContainer)
 {
 	if (Actor == nullptr)
 	{

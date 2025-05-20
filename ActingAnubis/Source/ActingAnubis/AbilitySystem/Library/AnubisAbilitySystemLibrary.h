@@ -31,9 +31,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem|Tags")
 	static bool HasMatchingGameplayTag(const AActor* Actor, FGameplayTag TagToCheck);
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem|Tags")
-	static bool HasAllMatchingGameplayTags(const AActor* Actor, const FGameplayTagContainer& TagContainer);
+	static bool HasAllMatchingGameplayTags(const AActor* Actor, FGameplayTagContainer TagContainer);
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem|Tags")
-	static bool HasAnyMatchingGameplayTags(const AActor* Actor, const FGameplayTagContainer& TagContainer);
+	static bool HasAnyMatchingGameplayTags(const AActor* Actor, FGameplayTagContainer TagContainer);
 
 	UFUNCTION(BlueprintCallable, Category = "Acting Anubis|Library|AbilitySystem|Tags")
 	static FGameplayTagContainer FilterTagContainer(const FGameplayTagContainer& TagContainer, const FGameplayTagContainer& FilterTag, bool FilterExact);
