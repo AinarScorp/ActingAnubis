@@ -21,9 +21,12 @@ void UAnubisAbilitySystemLibrary::InitializeAbilitySystemWithAbilitySets(UAbilit
 	{
 		return;
 	}
-	for (const auto& AbilitySet : AbilitySets)
+	for (UAbilitySet* AbilitySet : AbilitySets)
 	{
-		AbilitySet->GiveToAbilitySystem(AbilitySystemComp, nullptr, OwnerActor);
+		if (AbilitySet)
+		{
+			AbilitySet->GiveToAbilitySystem(AbilitySystemComp, nullptr, OwnerActor);
+		}
 	}
 	AbilitySystemComp->InitAbilityActorInfo(OwnerActor, AvatarActor);
 }

@@ -8,8 +8,7 @@
 
 UAnubisSimpleAbilitySystemComponent::UAnubisSimpleAbilitySystemComponent()
 {
-	PrimaryComponentTick.bCanEverTick = false;
-	PrimaryComponentTick.bStartWithTickEnabled = false;
+	PrimaryComponentTick.bStartWithTickEnabled = true;
 	ReplicationMode = EGameplayEffectReplicationMode::Minimal;
 }
 

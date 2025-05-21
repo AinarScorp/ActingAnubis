@@ -23,7 +23,10 @@ public:
 	void BP_OnGiveAbility(UPARAM(ref) const FGameplayAbilityActorInfo& ActorInfo);
 	UFUNCTION(BlueprintImplementableEvent, Category = "Acting Anubis|Ability", DisplayName = "OnRemoveAbility")
 	void BP_OnRemoveAbility(UPARAM(ref) const FGameplayAbilityActorInfo& ActorInfo);
-
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	FQuat MakeQuatFromAxisAndAngle(FVector Axis, float Angle);
+	UFUNCTION(BlueprintCallable)
+	void RotateStraightUp(FVector Normal, float DeltaTime, float InterpSpeed,float InterpSpeedRoll,UPARAM(ref) bool& PhaseCompleted);
 
 	UFUNCTION(BlueprintCallable, Category = Ability)
 	APlayerController* GetPlayerControllerFromActorInfo() const;

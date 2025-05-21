@@ -8,7 +8,7 @@ UAnubisAbilitySystemComponent::UAnubisAbilitySystemComponent()
 {
 	ReplicationMode = EGameplayEffectReplicationMode::Minimal;
 	PrimaryComponentTick.bStartWithTickEnabled = true;
-
+	FQuat(FVector(),2);
 }
 
 void UAnubisAbilitySystemComponent::AbilityInputTagTriggered(const FGameplayTag& InputTag)

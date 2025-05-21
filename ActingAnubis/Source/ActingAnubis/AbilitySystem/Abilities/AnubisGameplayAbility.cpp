@@ -8,6 +8,63 @@ UAnubisGameplayAbility::UAnubisGameplayAbility()
 	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
 }
 
+FQuat UAnubisGameplayAbility::MakeQuatFromAxisAndAngle(FVector Axis, float Angle)
+{
+	return FQuat(Axis,Angle);
+}
+
+void UAnubisGameplayAbility::RotateStraightUp(FVector Normal, float DeltaTime, float InterpSpeed,float InterpSpeedRoll, bool& PhaseCompleted)
+{
+	FVector SurfaceNormal = Normal;
+	FVector ActorForward = GetAvatarActorFromActorInfo()->GetActorForwardVector();
+	FRotator CurrentRot = GetAvatarActorFromActorInfo()->GetActorRotation();
+
+	const float MaxYawSpeed = InterpSpeed;  // degrees/second
+	const float MaxRollSpeed = InterpSpeedRoll;
+	const float YawTolerance = 1.f;
+	const float RollTolerance = 1.f;
+
+	// ------------------- PHASE 1: Align forward to surface -------------------
+	if (!PhaseCompleted)
+	{
+		FVector TargetForward = FVector::VectorPlaneProject(ActorForward, SurfaceNormal).GetSafeNormal();
+		float TargetYaw = TargetForward.Rotation().Yaw;
+		float YawDiff = FMath::FindDeltaAngleDegrees(CurrentRot.Yaw, TargetYaw);
+
+		if (FMath::Abs(YawDiff) <= YawTolerance)
+		{
+			PhaseCompleted = true; // done with yaw
+		}
+		else
+		{
+			float YawStep = FMath::Clamp(YawDiff, -MaxYawSpeed * DeltaTime, MaxYawSpeed * DeltaTime);
+			CurrentRot.Yaw += YawStep;
+			GetAvatarActorFromActorInfo()->SetActorRotation(CurrentRot);
+			return; // don't start phase 2 yet
+		}
+	}
+
+	// ------------------- PHASE 2: Align up to surface (roll) -------------------
+	FVector ActorUp = GetAvatarActorFromActorInfo()->GetActorUpVector();
+	FVector ProjectedUp = FVector::VectorPlaneProject(ActorUp, SurfaceNormal).GetSafeNormal();
+	float AngleBetween = FMath::Acos(FVector::DotProduct(ProjectedUp, SurfaceNormal));
+	float AngleDeg = FMath::RadiansToDegrees(AngleBetween);
+
+	FVector Cross = FVector::CrossProduct(ProjectedUp, SurfaceNormal);
+	float Sign = FVector::DotProduct(Cross, ActorForward) < 0 ? -1.0f : 1.0f;
+	float RollDiff = AngleDeg * Sign;
+
+	if (FMath::Abs(RollDiff) <= RollTolerance)
+	{
+		// Finished roll
+		return;
+	}
+
+	float RollStep = FMath::Clamp(RollDiff, -MaxRollSpeed * DeltaTime, MaxRollSpeed * DeltaTime);
+	CurrentRot.Roll += RollStep;
+	GetAvatarActorFromActorInfo()->SetActorRotation(CurrentRot);
+}
+
 APlayerController* UAnubisGameplayAbility::GetPlayerControllerFromActorInfo() const
 {
 	if (!ensure(CurrentActorInfo))
